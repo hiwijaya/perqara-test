@@ -45,9 +45,30 @@ def get_expenditures(given_n):
             print('Invalid input expenditure. try again.')
 
 
+def find_fraudulent_activity(expenditures, d):
+
+    n_times = 0
+
+    for i in range(len(expenditures)):
+
+        if i < d:
+            continue
+
+        amount = expenditures[i]
+        trailing_expenditures = expenditures[(i-d):i]
+
+        trailing_expenditures.sort()
+        median = statistics.median(trailing_expenditures)
+
+        if amount >= (2 * median):
+            n_times += 1
+
+    return n_times
+
+
 if __name__ == '__main__':
 
     n, d = get_n_and_d()
     expenditures = get_expenditures(n)
-
-
+    n_times = find_fraudulent_activity(expenditures, d)
+    print(n_times)
