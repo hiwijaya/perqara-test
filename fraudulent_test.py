@@ -56,8 +56,6 @@ def find_fraudulent_activity(expenditures, d):
 
         amount = expenditures[i]
         trailing_expenditures = expenditures[(i-d):i]
-
-        trailing_expenditures.sort()
         median = statistics.median(trailing_expenditures)
 
         if amount >= (2 * median):
