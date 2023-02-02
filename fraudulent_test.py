@@ -10,9 +10,9 @@ def get_n_and_d():
             n = int(n)
             d = int(d)
 
-            if not (1 <= n & n <= 2 * 10 ** 5):
+            if not (1 <= n <= 2 * 10 ** 5):
                 raise Exception('1 <= n <= 2*10^5')
-            if not (1 <= d & d <= n):
+            if not (1 <= d <= n):
                 raise Exception('1 <= d <= n')
 
             return n, d
@@ -34,7 +34,7 @@ def get_expenditures(given_n):
             for i in input_arr:
                 i = int(i)
 
-                if not (0 <= i & i <= 200):
+                if not (0 <= i <= 200):
                     raise Exception('0 <= expenditure[i] <= 200')
 
                 expenditure.append(i)
