@@ -123,13 +123,73 @@ def get_queens_possible_attack(board_number, queen_position, obstacle_positions)
 
     # move to right
     if queen_position.col < board_number:
-        for c in range((queen_position.row + 1), board_number + 1):
+        for c in range((queen_position.col + 1), board_number + 1):
 
             moved_position = Cell(queen_position.row, c)
             if meet_an_obstacle(moved_position, obstacle_positions):
                 break
 
             possible_attack += 1
+
+    # move to top-left
+    if (queen_position.row < board_number) or (queen_position.col > 1):
+
+        i = 1
+        while True:
+            moved_position = Cell((queen_position.row + i), (queen_position.col - i))
+
+            if (moved_position.row > board_number) or (moved_position.col < 1):
+                break
+            if meet_an_obstacle(moved_position, obstacle_positions):
+                break
+
+            possible_attack += 1
+            i += 1
+
+    # move to top-right
+    if (queen_position.row < board_number) or (queen_position.col < board_number):
+
+        i = 1
+        while True:
+            moved_position = Cell((queen_position.row + i), (queen_position.col + i))
+
+            if (moved_position.row > board_number) or (moved_position.col > board_number):
+                break
+            if meet_an_obstacle(moved_position, obstacle_positions):
+                break
+
+            possible_attack += 1
+            i += 1
+
+    # move to bottom-left
+    if (queen_position.row > 1) or (queen_position.col > 1):
+
+        i = 1
+        while True:
+            moved_position = Cell((queen_position.row - i), (queen_position.col - i))
+
+            if (moved_position.row < 1) or (moved_position.col < 1):
+                break
+            if meet_an_obstacle(moved_position, obstacle_positions):
+                break
+
+            possible_attack += 1
+            i += 1
+
+    # move to bottom-right
+    if (queen_position.row > 1) or (queen_position.col < board_number):
+
+        i = 1
+        while True:
+            moved_position = Cell((queen_position.row - i), (queen_position.col + i))
+
+            if (moved_position.row < 1) or (moved_position.col > board_number):
+                break
+            if meet_an_obstacle(moved_position, obstacle_positions):
+                break
+
+            possible_attack += 1
+            i += 1
 
     return possible_attack
 
